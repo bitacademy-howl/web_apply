@@ -15,8 +15,8 @@
 	<properties>
 	
 		<java-version>1.8</java-version>
-		<org.springframework-version>4.0.2.RELEASE</org.springframework-version>
-		<hibernate-version>4.3.5.Final</hibernate-version>
+		<org.springframework-version>5.1.1.RELEASE</org.springframework-version>
+		<hibernate-version>5.3.7.Final</hibernate-version>
 		<mysql-version>8.0.12</mysql-version>
 		<tomcat-version>9.0.12</tomcat-version>
 		
@@ -68,11 +68,6 @@
 		</dependency>
 		
 		<!-- JDBC를 직접 사용하여 DB CRUD 하기 위한... ORM 사용하니깐 없어도 된다. -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jdbc</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>
 		
 		<!-- 스프링 dbcp 와 commonDBCP -->
 		<dependency>
