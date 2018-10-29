@@ -1,6 +1,6 @@
-<%@page import="com.flapper.stark.model.MusicVO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,9 @@
 <meta charset="utf-8">
 <title>My start</title>
 
-<% MusicVO mvo = (MusicVO) request.getAttribute("mvo"); %>
-
 </head>
+
+
 <body>
     <div id="jb-container">
       <div id="jb-header">
@@ -23,9 +23,7 @@
       <div id="jb-sidebar-left">
         <h2>사이드 바</h2>
         <ul>
-          <li><%= mvo.getMusicID() %></li>
-          <li><%= mvo.getLyrics() %></li>
-          <li>리스트 3</li>
+        	<li></li>
         </ul>
       </div>
       <div id="jb-content">
@@ -39,20 +37,35 @@
 			    <li>앨범</li>
 			    <li>유통사</li>
 			</ul>
+			
+			<%-- <c:forEach var="mvo" items="${mlist}">
+				<ul class="Music_List">
+				    <li>ID : ${mvo.music_ID}</li>
+				    <li>Title : ${mvo.music_Title}</li>
+				</ul>
+			</c:forEach> --%>
 			<!-- 여기에 포문 돌려서 music entity를 표현 -->
-			<ul class="Music_List">
-			    <li><%= mvo.getMusicTitle() %></li>
-			    <li>기획사랑 가수명은 parent 인 AlbumTable에서 얻어올 것!</li>
-			    <li><%= mvo.getGenre() %></li>
-			    <li><%= mvo.getAlbumID() %></li>
-			    <li>기획사랑 가수명은 parent 인 AlbumTable에서 얻어올 것!</li>
-			    <li>가수</li>
-			    <li>앨범</li>
-			    <li>유통사</li>
-			</ul>
+			<%-- <c:forEach items="${mlist}" var="mvo">
+				<ul class="Music_List">
+				    <li>${mvo}</li>
+				</ul>
+			</c:forEach> --%>
+			
+			<%-- <c:set var="i" value="0" />
+			<c:set var="j" value="3" />
+			<table border="1">
+				<c:forEach items="${list }" var="list">
+					<c:if test="${i%j == 0 }">
+					<tr>
+						</c:if>
+						<td>${list }</td>
+						<c:if test="${i%j == j-1 }">
+					</tr>
+					</c:if>
+				<c:set var="i" value="${i+1 }" />
+			</c:forEach> </table> --%>
+
         </div>
-        
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
       </div>
       <div id="jb-sidebar-right">
         <h2>Sidebar</h2>

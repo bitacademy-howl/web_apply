@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018. 10. 17 ???? 1:17:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="dao.vo.MusicVO" table="MUSICVO">
+        <id name="musicID" type="int">
+            <column name="MUSICID" />
+            <generator class="assigned" />
+        </id>
+        <property name="albumID" type="int">
+            <column name="ALBUMID" />
+        </property>
+        <property name="musicTitle" type="java.lang.String">
+            <column name="MUSICTITLE" />
+        </property>
+        <property name="genre" type="java.lang.String">
+            <column name="GENRE" />
+        </property>
+        <property name="hash_tags" type="java.lang.String">
+            <column name="HASH_TAGS" />
+        </property>
+        <property name="lyrics" type="java.lang.String">
+            <column name="LYRICS" />
+        </property>
+        <property name="musicNode" type="java.lang.String">
+            <column name="MUSICNODE" />
+        </property>
+        <property name="composerID" type="int">
+            <column name="COMPOSERID" />
+        </property>
+        <property name="lyricstID" type="int">
+            <column name="LYRICSTID" />
+        </property>
+    </class>
+</hibernate-mapping>

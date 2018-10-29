@@ -16,7 +16,8 @@
 	
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.1.RELEASE</org.springframework-version>
-		<hibernate-version>5.3.7.Final</hibernate-version>
+		<hibernate-version>5.2.13.Final</hibernate-version>
+		<!-- <hibernate-version>5.2.0.Final</hibernate-version> -->
 		<mysql-version>8.0.12</mysql-version>
 		<tomcat-version>9.0.12</tomcat-version>
 		
@@ -28,7 +29,16 @@
 	<!-- ############################################################################################################################## -->
 	<!-- dependencies -->
 	<dependencies>
-	
+		<dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
 	<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -74,6 +84,12 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.5.0</version>
 		</dependency>
 		
 		<!-- 하이버네이트 by maven XML -->
@@ -188,7 +204,12 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		<!-- https://mvnrepository.com/artifact/cglib/cglib -->
+		<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib</artifactId>
+		    <version>3.2.8</version>
+		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
