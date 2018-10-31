@@ -1,4 +1,24 @@
-@charset "EUC-KR";
+@charset "utf-8";
+
+#fixed-container {
+  width: 940px;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #bcbcbc;
+}
+
+#fixed-header {
+	padding: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #bcbcbc;
+	/* background-image: url("./resources/images/top_bar_bg_img.jpg"); */
+}
+
+#fixed-footer {
+  clear: both;
+  padding: 20px;
+  border: 1px solid #bcbcbc;
+}
 
 #index-content{
 	width: 900px;
@@ -47,8 +67,27 @@
 	align: center;
 }
 
+/* ìƒë‹¨ ì—¬ë°± 10px */
+nav ul li { display:inline;
+/* ì„¸ë¡œë‚˜ì—´ì„ ê°€ë¡œë‚˜ì—´ë¡œ ë³€ê²½ */
+border-left:1px solid #999; 
+/* ê° ë©”ë‰´ì˜ ì™¼ìª½ì— "|" í‘œì‹œ(ë¶„ë¥˜ í‘œì‹œ) */
+font:bold 12px Dotum;
+/* í°íŠ¸ ì„¤ì • - 12pxì˜ ë‹ì›€ì²´ êµµì€ ê¸€ì”¨ë¡œ í‘œì‹œ */
+padding:0 10px;
+/* ê° ë©”ë‰´ ê°„ê²© */
+}
+Music_List li{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+}
 
-/* ±âº» ¼³Á¤*/
+
+
+
+/* ê¸°ë³¸ ì„¤ì •*/
 
 a{text-decoration:none; color:#000000;}
 
@@ -60,25 +99,13 @@ Music_List ul{
     margin:0;
     padding:0;
 }
-/* »ó´Ü ¿©¹é 10px */
-nav ul li { display:inline;
-/* ¼¼·Î³ª¿­À» °¡·Î³ª¿­·Î º¯°æ */
-border-left:1px solid #999; 
-/* °¢ ¸Ş´ºÀÇ ¿ŞÂÊ¿¡ "|" Ç¥½Ã(ºĞ·ù Ç¥½Ã) */
-font:bold 12px Dotum;
-/* ÆùÆ® ¼³Á¤ - 12pxÀÇ µ¸¿òÃ¼ ±½Àº ±Û¾¾·Î Ç¥½Ã */
-padding:0 10px;
-/* °¢ ¸Ş´º °£°İ */
-}
-Music_List li{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
 
 
-nav ul li:first-child{border-left:none;} /* ¸Ş´º ºĞ·ùÁß Á¦ÀÏ ¿ŞÂÊÀÇ "|"´Â »èÁ¦ */
+
+
+
+
+nav ul li:first-child{border-left:none;} /* ë©”ë‰´ ë¶„ë¥˜ì¤‘ ì œì¼ ì™¼ìª½ì˜ "|"ëŠ” ì‚­ì œ */
 
 .box {
   float: left;
@@ -89,20 +116,3 @@ nav ul li:first-child{border-left:none;} /* ¸Ş´º ºĞ·ùÁß Á¦ÀÏ ¿ŞÂÊÀÇ "|"´Â »èÁ¦ *
 .after-box {
   clear: left;
 }
-
-/* 
-#Music_List ul{
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-
-#Music_List li{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
-
-#jb-header.inner_wrap_v1:after {content:"";display:block;clear:both;}
-#header_wrap.sub_v3 .inner_wrap_v3, */

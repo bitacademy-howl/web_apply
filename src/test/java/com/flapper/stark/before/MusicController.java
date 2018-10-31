@@ -1,12 +1,10 @@
-package com.flapper.stark.controller;
+package com.flapper.stark.before;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -26,7 +24,6 @@ import com.flapper.stark.model.MusicVO;
 
 
 @Controller
-@RequestMapping(value="/music")
 public class MusicController {
 	private static final Logger logger = LoggerFactory.getLogger(MusicController.class);
 	
@@ -37,20 +34,7 @@ public class MusicController {
 //	@Qualifier("testBean")
 	TestBeanC testBean;
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String music(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "music_home";
-	}
-	
-	@RequestMapping(value = "/track")
+	@RequestMapping(value = "/music")
 	public ModelAndView musicHome() {
 		Connection conn = null;
 		ModelAndView mv = new ModelAndView();
@@ -93,7 +77,7 @@ public class MusicController {
 		}
 		
 		
-		mv.setViewName("music_list");
+		mv.setViewName("list");
 		mv.addObject("list", list);
 		mv.addObject("testc", testBean);
 		return mv;

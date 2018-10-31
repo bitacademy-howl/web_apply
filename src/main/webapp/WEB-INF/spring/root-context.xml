@@ -10,8 +10,11 @@
 	>
 	
 	<context:annotation-config />
-	<context:property-placeholder location="classpath:META-INF/db.properties"/>
 	<context:component-scan base-package="com.flapper.stark"/>
+	<context:component-scan base-package="com.flapper.stark.back_end"/>
+	
+	<context:property-placeholder location="classpath:META-INF/db.properties"/>
+	
 	<!-- <tx:annotation-driven transaction-manager="txManager"/> -->
 	
 <!-- 	<bean id="mvo" class="com.flapper.stark.model.MusicVO">
@@ -26,9 +29,8 @@
 		<property name="password" value="stark1234!" />
 	</bean>
 	
-	<!-- <bean id="sessionFactory" >
-		<property name=""></property>
-	</bean>
+		<!-- 
+	
 	JPA 예외를 스프링 예외로 변환
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	

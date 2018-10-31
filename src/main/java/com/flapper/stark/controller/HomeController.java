@@ -36,8 +36,17 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Locale locale, Model model){
-		return "login";
+	@RequestMapping(value = "/testcss", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+
+		return "test_css";
 	}
+	
 }
