@@ -20,7 +20,7 @@
   border: 1px solid #bcbcbc;
 }
 
-#index-content{
+#void-content{
 	width: 900px;
 	padding: 20px;
 	margin-bottom: 20px;
@@ -51,6 +51,17 @@
   border: 1px solid #bcbcbc;
 }
 
+#user_list_table {
+	cellspacing: 0;
+	cellpadding: 6;
+	border:1;
+}
+
+#user_list_table tr{
+	bgcolor:grey;
+	color:white;
+}
+
 #index-content {
 	align:center;
 }
@@ -70,13 +81,15 @@
 /* 상단 여백 10px */
 nav ul li { display:inline;
 /* 세로나열을 가로나열로 변경 */
-border-left:1px solid #999; 
+border-left:1px solid #999;
+border-right:1px solid #999;
 /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */
 font:bold 12px Dotum;
 /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
 padding:0 10px;
 /* 각 메뉴 간격 */
 }
+
 Music_List li{
     margin: 0 0 0 0;
     padding: 0 0 0 0;

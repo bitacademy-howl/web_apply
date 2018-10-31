@@ -1,55 +1,62 @@
 package com.flapper.stark.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="End_User")
+@Table(name="user_table")
 public class UserVO {
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String id;
+
+	@Column(name="PW")
+	private String pw;
 	
 //	이름
-	@Column(name="FIRST_NAME")
-	private String firstName;
+	@Column(name="user_name")
+	private String name;
 	
-	@Column(name="LAST_NAME")
-	private String lastName;
-	
-	@Column(name="E_MAIL")
+	@Column(name="e_mail")
 	private String eMail;
 	
-	@Column(name="PW")
-	private String password;
+	@Column(name="gender")
+//	true 이면 남성, false 이면 여성
+	private boolean gender;
+	
+	@Column(name="age")
+	private int age;
+	
+	@Column(name="enabled")
+	private boolean enabled;
 	
 //	getter, setters
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getPw() {
+		return pw;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getName() {
+		return name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String geteMail() {
@@ -60,14 +67,31 @@ public class UserVO {
 		this.eMail = eMail;
 	}
 
-	public String getPassword() {
-		return password;
+	public boolean isGender() {
+		return gender;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setGender(boolean gender) {
+		this.gender = gender;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+//	equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -84,7 +108,7 @@ public class UserVO {
 			return true;
 		}
 	}
-	
+
 	public int hashCode() {
 		return eMail != null ? eMail.hashCode() : 0;
 	}
@@ -93,13 +117,15 @@ public class UserVO {
 		StringBuilder sb = new StringBuilder();
 		sb.append("====UserVO====");
 		sb.append("\nname : ");
-		sb.append(lastName);
-		sb.append(" ");
-		sb.append(firstName);
+		sb.append(this.name);
 		sb.append("\nE-Mail : ");
-		sb.append(eMail);
+		sb.append(this.eMail);
 		sb.append("\nPW : ");
-		sb.append(password);
+		sb.append(this.pw);
+		sb.append("\ngender : ");
+		sb.append(this.gender);
+		sb.append("\nage : ");
+		sb.append(this.age);
 		sb.append(")");
 		return sb.toString();
 	}

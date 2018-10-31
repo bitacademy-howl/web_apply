@@ -2,17 +2,15 @@
     pageEncoding="utf-8"%>
 
 <%@page import="com.flapper.stark.model.MusicVO"%>
-<%@page import="com.flapper.stark.back_end.TestBeanC"%>
 <%@page import="java.util.ArrayList"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% TestBeanC testc = (TestBeanC)request.getAttribute("testc"); %>
 <% ArrayList<MusicVO> list = (ArrayList<MusicVO>)request.getAttribute("list"); %>
 
-<jsp:include page="head_music.jsp" />
+<jsp:include page="head_musicapp.jsp" />
 
 <div id="music-content">
 	<div>
@@ -33,4 +31,4 @@
 	</div>
 </div>
 
-<jsp:include page="tail_music.jsp" />
+<jsp:include page="tail_musicapp.jsp" />

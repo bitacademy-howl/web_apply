@@ -3,7 +3,7 @@
 
 <% %>
 
-<jsp:include page="head_music.jsp"/>
+<jsp:include page="head_musicapp.jsp"/>
 	<div id="music-content">
 		<div>
 			<p>Á¦¸ñ</p>
@@ -16,4 +16,4 @@
 			</ul>
 		</div>
 	</div>
-<jsp:include page="tail_music.jsp"/>
+<jsp:include page="tail_musicapp.jsp"/>

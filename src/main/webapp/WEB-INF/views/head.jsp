@@ -24,10 +24,10 @@
         <nav id="topMenu" >
 			<ul>
 				 <li><a class="menuLink" href="/">Home</a></li>
-				 <li><a class="menuLink" href="music">Music_App</a></li>
+				 <li><a class="menuLink" href="/music">Music_App</a></li>
 				 <li><a class="menuLink" href="#">Community</a></li>
 				 <li><a class="menuLink" href="#">Locations</a></li>
-				 <li><a class="menuLink" href="#">About us</a></li>
+				 <li><a class="menuLink" href="/user/list">About us</a></li>
 			</ul>
 	    </nav>
       </div>

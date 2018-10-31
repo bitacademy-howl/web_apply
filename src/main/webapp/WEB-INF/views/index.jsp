@@ -3,7 +3,7 @@
 
 <jsp:include page="head.jsp"/>
 
-<div id="index-content">
+<div id="void-content">
 	<h2>Flapper Home</h2>
 	
 	<div id="index-content-text"><p> 홈페이지....<p></div>

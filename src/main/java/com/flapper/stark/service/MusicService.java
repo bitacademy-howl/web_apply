@@ -1,8 +1,9 @@
 package com.flapper.stark.service;
 
-public class MusicService {
-	
-	public void searchingByTag(String tag) {
-		
-	}
+import java.util.List;
+
+import com.flapper.stark.model.MusicVO;
+
+public interface MusicService {
+	public List<MusicVO> MusicByTag(String tag);
 }

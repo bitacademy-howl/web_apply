@@ -1,5 +1,9 @@
 package com.flapper.stark.service;
 
-public class UserService {
+import java.util.List;
 
+import com.flapper.stark.model.UserVO;
+
+public interface UserService {
+	public List<UserVO> listUsers();
 }

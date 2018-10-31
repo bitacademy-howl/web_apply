@@ -18,10 +18,10 @@ public class BeanInitiator {
     @Autowired
     private ApplicationContext context;
  
-    @Bean
+    @Bean("sessionFactory")
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-        factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
+        factoryBean.setConfigLocation(context.getResource("classpath:META-INF/hibernate.cfg.xml"));
         
         factoryBean.setAnnotatedClasses(UserVO.class);
         factoryBean.setAnnotatedClasses(MusicVO.class);
@@ -29,7 +29,7 @@ public class BeanInitiator {
         return factoryBean;
     }
  
-    @Bean
+    @Bean("txManager")
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(getSessionFactory().getObject());
