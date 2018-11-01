@@ -1,184 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <xml 1.0 문서라고 명시하였고, 만약 xml 1.0 에서 선언되지 않은 태그를 사용하려 시도하면 -->
+<!-- 이클립스에서 이를 catch 하여 오류 발생 -->
+<!-- ex : <stark></stark> -->
+
+<!-- 네임 스페이스에 대한 설명 : xml 문서의 스키마를 정의 - https://okky.kr/article/240080 맨 아래 댓글을 참고할 것!-->
+<!--                     네임스페이스 위키...
+						https://ko.wikipedia.org/wiki/%EC%9D%B4%EB%A6%84%EA%B3%B5%EA%B0%84
+						https://en.wikipedia.org/wiki/Namespace
+						영문버전을 참조해라 존나 좋다.-->
+<!-- 기본 네임스페이스 : beans 로 정의 -->
+<!-- 기본 네임스페이스가 정의되어 있지 않은 다른것들을 사용하기 위해 별도의 네임스페이스 정의 : 2번째 ~ 4번째 라인-->
+<!-- 해당 스키마는 아래 스키마location 에 지정된 파일에 정의되어 있고, 정의된 xml 태그???를 사용하기 위해서는 -->
+<!-- 하위 네임스페이스의 이름을 명시하여 사용할 것을 선언한 문구이다... -->
+
 <beans xmlns="http://www.springframework.org/schema/beans"
+
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-	 http://www.springframework.org/schema/tx    http://www.springframework.org/schema/tx/spring-tx.xsd"
-	 
-	>
 	
-	<context:annotation-config />
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<!-- 루트컨텍스트에 대한 설명 -->
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- <annotation-driven/> -->
+	<!-- 이런식으로 사용 불가 : 왜냐하면 <annotaion-driven> 태그는
+	     http://www.springframework.org/schema/beans 스키마에 정의되어 있지 않기때문 -->
 	
-<!-- 	<context:component-scan base-package="com.flapper.stark.back_end"/>
-	<context:component-scan base-package="com.flapper.stark"/>
+	<!-- 때문에 이런식으로 사용가능 -->
+	<!-- <mvc:annotation-driven/> -->
+	
+	<!-- 위의 xmlns에서 정의한 것은 xml 파서를 통해 파싱하기 위한 형식을 정의한 것일 뿐 사용은 프레임 워크 및 컨테이너 등 파싱하는 대상에 맞춰줘야 함 -->
+	<!-- 예를 들면 디스패치 서블릿 컨텍스트에만 정의할 수 있는 것이 아니라 위처럼 mvc 문서형식을 정의할 수는 있지만, -->
+	<!-- 실제 컨텍스트를 읽어서 빈 생성하고 하는 놈은 dispatchservlet 클래스이므로 루트컨텍스트에는 설정해도 소용없음-->
+	<context:component-scan base-package="com.flapper.stark.service"/>
 	<context:component-scan base-package="com.flapper.stark.dao"/>
-	<context:component-scan base-package="com.flapper.stark.vo"/>
-	<context:component-scan base-package="com.flapper.stark.service"/> -->
-	
-	
-	<!-- <tx:annotation-driven transaction-manager="txManager"/> -->
-	
-<!-- 	<bean id="mvo" class="com.flapper.stark.model.MusicVO">
-		<property name="lyrics" value="하잉"/>
-	</bean> -->
-	
-	<!-- Connection Pool DataSource -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://localhost:3306/webdb?useSSL=false&amp;serverTimezone=UTC&amp;DB_CLOSE_DELAY=-1" />
-		<property name="username" value="root" />
-		<property name="password" value="stark1234!" />
-	</bean>
-</beans>
-	
-		<!-- 
-	
-	JPA 예외를 스프링 예외로 변환
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-	
-	<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	    <property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/> -->
-
-	
-<!--     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-	    <property name="dataSource" ref="dataSource"/>
-	    <property name="annotatedClasses" value="com.flapper.stark.model.MusicVO"/>
-	    <property name="packagesToScan" value="com.flapper.stark.model" />
-	    <property name="hibernateProperties">
-	    	<props>
-	    		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-	    		<prop key="hibernate.show_sql">true</prop>
-	    		<prop key="hibernate.format_sql">true</prop>
-	    		<prop key="hibernate.use_sql_comments">true</prop>
-	    		<prop key="hibernate.id.new_generator_mappings">true</prop>
-	    		<prop key="hibernate.hbm2ddl.auto">create</prop>
-	    	</props>
-	    </property>
-	</bean> -->
-	<!-- 
-	<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	    <property name="sessionFactory" ref="sessionFactory"/>
-	</bean> -->
-	
-	
-<!--     JPA 설정 ( 엔티티 매니저 팩토리 등록 )
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    	<property name="dataSource" ref="dataSource" />
-    	@Entity 탐색 범위
-    	<property name="packagesToScan" value="com.flapper.stark" />
-    	하이버네이트 구현체 사용
-    	<property name="jpaVendorAdapter">
-    		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-    	</property>
-    	하이버네이트 상세 설정
-    	<property name="jpaProperties">
-    		<props>
-	    		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-	    		<prop key="hibernate.show_sql">true</prop>
-	    		<prop key="hibernate.format_sql">true</prop>
-	    		<prop key="hibernate.use_sql_comments">true</prop>
-	    		<prop key="hibernate.id.new_generator_mappings">true</prop>
-	    		<prop key="hibernate.hbm2ddl.auto">create</prop>
-    		</props>
-    	</property>
-    </bean> -->
-    
-   
-	
-	<!-- 트랜잭션 관리자 등록 -->
-	<!-- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean> -->
-	
-    <!-- 
-    <bean id="driverManager" class="java.sql.DriverManager">
-    </bean> -->
-    
-	<!-- <bean id="dataSource1" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
-	    <property name="driverClassName" value="${jdbc.driverClassName}" />
-	    <property name="url" value="${jdbc.url}" />
-	    <property name="username" value="${jdbc.username}" />
-	    <property name="password" value="${jdbc.password}" />
-	</bean> -->
-	<!-- 
-	<bean id="myDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-	    <property name="driverClassName" value="${jdbc.driverClassName}" />
-	    <property name="url" value="${jdbc.url}" />
-	    <property name="username" value="${jdbc.id}" />
-	    <property name="password" value="${jdbc.pw}" />
-	</bean>
-	
-	하이버네이트 인스턴스 생성
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
-	spring jpa 설정	<property name="dataSource" ref="dataSource"/>
-		<property name="packagesToScan" value="com.flapper.stark.model" />
-		대상이 될 모든 엔티티 위치 설정
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			실행된 쿼리 출력 여부
-			</props>
-		</property>
-	</bean>
-	
-		<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	어노테이션 트랜잭션 사용
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	</beans> -->
-	
-
-
-
-
-<!-- 
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-
+	<context:component-scan base-package="com.flapper.stark.back_end"/>
 	<context:component-scan base-package="com.flapper.stark"/>
-	<context:property-placeholder location="/WEB-INF/hibernate.properties"/>
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}"/>
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.id}"/>
-		<property name="password" value="${jdbc.pw}"/>
-	</bean>
 	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        
-        어노테이션 클래스들에 대한 클래스 명을 정의
-        주의 !!!! : value 속성으로 string을 넣는 것!
-        <property name="annotatedClasses" value="com.flapper.stark.model.MusicVO"/>
-        
-        기타 하이버네이트 속성들을 정의
-        <property name="hibernateProperties">
-            <props>
-            	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-            	<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-            	<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-            	<prop key="pool_size">${hibernate.pool_size}</prop>
-            </props>
-        </property>
-    </bean>
-    
-    <bean id="transectionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-    	<property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
-    
-    <tx:annotation-driven transaction-manager="transactionManager"/> -->
+</beans>

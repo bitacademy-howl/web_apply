@@ -6,6 +6,7 @@
 <jsp:include page="head_musicapp.jsp"/>
 	<div id="music-content">
 		<div>
+			<h1> 이곳은 음악 앱 메인 </h1>
 			<p>제목</p>
 			<ul class="Music_List_Title">
 				<li>제목</li>

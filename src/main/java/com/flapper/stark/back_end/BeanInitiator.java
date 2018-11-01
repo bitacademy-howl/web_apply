@@ -8,6 +8,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.flapper.stark.model.AlbumVO;
+import com.flapper.stark.model.ArtistVO;
 import com.flapper.stark.model.MusicVO;
 import com.flapper.stark.model.UserVO;
 
@@ -23,8 +25,14 @@ public class BeanInitiator {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setConfigLocation(context.getResource("classpath:META-INF/hibernate.cfg.xml"));
         
-        factoryBean.setAnnotatedClasses(UserVO.class);
-        factoryBean.setAnnotatedClasses(MusicVO.class);
+//        factoryBean.setAnnotatedPackages("com.stark.flapper.model");
+        factoryBean.setAnnotatedClasses(
+        		UserVO.class, 
+        		MusicVO.class,
+        		AlbumVO.class,
+        		ArtistVO.class
+        		);
+//        factoryBean.setAnnotatedClasses(MusicVO.class);
         
         return factoryBean;
     }

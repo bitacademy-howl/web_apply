@@ -33,7 +33,6 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Locale locale, Model model){
 		
-		
 		return "user_login";
 	}
 	

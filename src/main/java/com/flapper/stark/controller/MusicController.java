@@ -1,11 +1,8 @@
 package com.flapper.stark.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,34 +16,49 @@ import com.flapper.stark.service.MusicService;
 @Controller
 @RequestMapping(value="/music")
 public class MusicController {
-	private static final Logger logger = LoggerFactory.getLogger(MusicController.class);
 	
 	@Autowired
 	private MusicService musicService;
 	
 //	musicapp 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String music(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String musicApp(Locale locale, Model model) {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "musicapp_main";
 	}
 	
-//	musicapp 에서 음원 눌렀을때의 홈
+//	musicapp track
 	@RequestMapping(value = "/track")
-	public ModelAndView musicHome(ModelAndView mv) {
-		String tag = "아이유";
+	public ModelAndView musicAppTrack(Locale locale, ModelAndView mv) {
+		String tag = "편지";
 		List<MusicVO> resultList;
 		
 		resultList = musicService.MusicByTag(tag);
 		
-		mv.setViewName("musicapp_main_test");
+		mv.setViewName("musicapp_main_track");
+		mv.addObject("list", resultList);
+		return mv;
+	}
+	
+//	musicapp album
+	@RequestMapping(value = "/album")
+	public ModelAndView musicAppAlbum(Locale locale, ModelAndView mv) {
+		List resultList = null;
+		// 구현 예정
+		
+		mv.setViewName("musicapp_main_album");
+		mv.addObject("list", resultList);
+		return mv;
+	}
+	
+//	musicapp artist
+	@RequestMapping(value = "/artist")
+	public ModelAndView musicAppArtist(Locale locale, ModelAndView mv) {
+		List resultList = null;
+		// 구현 예정
+		
+		mv.setViewName("musicapp_main_artist");
 		mv.addObject("list", resultList);
 		return mv;
 	}

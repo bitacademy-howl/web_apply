@@ -1,8 +1,6 @@
 package com.flapper.stark.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.flapper.stark.model.MusicVO;
-
-@Repository // 일반적으로 DAO에 사용되며 DB Exception을 DataAccessException으로 변환한다.
-public class MusicDaoImpl {
+// 일반적으로 DAO에 사용되며 DB Exception을 DataAccessException으로 변환한다.
+@Repository(value="musicDao")
+public class MusicDaoImpl implements MusicDao{
+	
+	private static Logger logger = LoggerFactory.getLogger(MusicDaoImpl.class);
 	
 ///////////////////////////////////////////////////////////////////////////	
 // SessionFactory : 하이버네이트 지원
@@ -30,41 +30,45 @@ public class MusicDaoImpl {
 //	sessionfactory로부터 세션을 얻어오고, 세션 펙토리는 하이버네이트 내장 connection pool을
 //	사용할 경우 커넥션 풀의 기능까지 관리하게 된다....
 //	c3p0도 마찬가지....
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Autowired
-	private static Logger logger = LoggerFactory.getLogger(MusicDaoImpl.class);
 ///////////////////////////////////////////////////////////////////////////
-	
+	@Override
 	public List<MusicVO> getListByTag(String tag) {
+		List<MusicVO> resultList = null;
+		
 		Session sess = sessionFactory.openSession();
 		sess.beginTransaction();
 		
-		List<MusicVO> resultList;
-		
-		String hql = "From MusicVO where Like :name";
-//		자바 퍼시스턴스 제공 인터페이스로 받아도 되나????
-//		일단 하고 알아볼 것!
-//		javax.persistence.Query q;
-		
-//		아 진짜 스트링 빌더 쓰는 게 좋나....십러..뉴를 해야대는데.;;;
 		StringBuilder sb = new StringBuilder();
 		sb.append("%");
 		sb.append(tag);
 		sb.append("%");
-		
-		Query<MusicVO> query = sess.createQuery(hql).setParameter("name", sb);
-		resultList = query.list();
-		
-		logger.info("person List :: " + resultList);
-		
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		여기 작성중!!!!!!!!!!!!!!!!!!!!!
+//
+////		session 
+//		CriteriaBuilder builder = sess.getCriteriaBuilder();
+//
+//		CriteriaQuery<MusicVO> criteria = builder.createQuery( MusicVO.class );
+//		Root<MusicVO> root = criteria.from( MusicVO.class );
+//		
+//		criteria.select( root );
+//		criteria.where( builder.equal( root.get( Person_.name ), "John Doe" ) );
+//
+//		List<Person> persons = entityManager.createQuery( criteria ).getResultList();
+////		네이티브 쿼리는 테이블명, 컬럼명이 코드에 들어감
+//		List<Object[]> persons = sess.createNativeQuery("SELECT * FROM MusicVO").getResultList();
+//		
+//		logger.info("person List :: " + resultList);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		sess.close();
-		
 		return resultList;
-		
 	}
 	
+	@Override
 	public List<MusicVO> music_list() {
 		List<MusicVO> mList;
 		
@@ -74,7 +78,6 @@ public class MusicDaoImpl {
 		
 		Query<MusicVO> query = sess.createQuery("from MusicVO");
 		mList = query.getResultList();
-		
 		
 		sess.close();
 		

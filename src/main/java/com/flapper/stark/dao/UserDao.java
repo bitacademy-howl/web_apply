@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.flapper.stark.model.UserVO;
 
-//@Repository
+
 public interface UserDao {
 	public List<UserVO> listUser();
 }

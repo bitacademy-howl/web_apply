@@ -4,8 +4,8 @@
 <div id="music-sidebar-left">
 		<h2 id="side-menu-bar" align=center>메뉴</h2>
 		<ul>
-			<li><a href="music">음원</a></li>
-			<li><a href="music">앨범</a></li>
-			<li><a href="music">아티스트</a></li>
+			<li><a href="/music/track">음원</a></li>
+			<li><a href="/music/album">앨범</a></li>
+			<li><a href="/music/artist">아티스트</a></li>
 		</ul>
 </div>

@@ -10,8 +10,31 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	
+	<!-- ############################################################################################################################## -->
+	<annotation-driven/>
+	<!-- 컨트롤러가 사용하는 어노테이션 사용을 위해 기재하는 태그 -->
+	<!-- 어노테이션을 활용한 리퀘스트 매핑을 위해서는 디스패치 서블릿에 어노테이션 드리븐 태그를 포함한 설정을 던져줘야 한다...빼보면 jsp 페이지 매핑이 되지 않음... -->
+	
+	<!-- 아래의 설명 참조
+	         기본적으로 RequestMapping, ModelAttribute, SessionAttribute, RequestParam 등
+	     MVC에서 사용되는 Annotation 사용을 위해 mvc:annotation-driven을 사용하는 것으로 알고 있습니다. -->
+	<!-- ############################################################################################################################## -->
+	
+	<!-- 설정을 위한 어노테이션을 사용하기 위한 : @Configure -->
 	<context:annotation-config/>
+	
+	<context:component-scan base-package="com.flapper.stark.controller" />
+	
+	<!-- <context:annotation-config> vs <context:component-scan> -->
+	<!-- 두가지는 비교가 많이 된다. -->
+	<!-- 만약, 동일한 기능이라 말한다면 스프링에서 제공하는 @Configuration 어노테이션 사용하지 않아본 사람이다. -->
+	<!-- 둘은 차이가 있으며, -->
+	<!-- <context:component-scan>은 component-scan 은 @bean 및 @Repositry, @Service 등의 어노테이션을 스캔하여 스캐닝한 결과를 빈객체로 모두 등록-->
+	<!-- <context:annotation-config>는 @Configure 어노테이션등으로 설정된 클래스를 빈으로 등록하기 위한 과정이다 -->
+	<!--  -->
+	<!-- ############################################################################################################################## -->
+	
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -22,8 +45,30 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.flapper.stark" />
+	<!-- <context:component-scan base-package="com.flapper.stark" />
 	
-	
+	-->
 	
 </beans:beans>
+	
+	
+
+	<!-- 
+	root-context.xml 는 
+	 -jsp와 관련이 없는 객체(bean)를 설정해줍니다. 아래 그림과 같이(service, repository)
+	 -비즈니스 로직을 위한 설정입니다.
+	
+	servlet-context.xml 는 
+	 -jsp와 관련 있는 객체(bean)를 설정해줍니다. (controller, MultipartResolver(파일 업로드), Interceptor(로그인) 등),  
+	 -URI와 관련 설정을 담는 클래스는 servlet-context.xml에 들어가야 합니다.
+	 -WEB Application에서 Client의 요청을 받기 위한 설정입니다.
+	-->
+	
+	<!-- 루트 컨텍스트는 서블릿 컨텍스트의 부분집함으로 생각! -->
+	<!-- 루트컨텍스트에 정의된 bean은 공유되지만 서블릿 컨텍스트에 정의된 bean은 공유되지 않음  -->
+	<!-- 디스패치 서블릿의 configure context 이고(web.xml) 참조 -->
+	<!-- 디스패치 서블릿은 스프링에서 모든 요청에 대한 처리를 담당한다. -->
+	
+	<!-- Dispatch-Servlet -->
+	<!-- 참조 : http://mangkyu.tistory.com/18  -->
+	<!-- Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller) -->

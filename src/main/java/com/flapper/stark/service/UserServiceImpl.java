@@ -19,5 +19,4 @@ public class UserServiceImpl implements UserService{
 	public List<UserVO> listUsers() {
 		return this.userDao.listUser();
 	}
-	
 }

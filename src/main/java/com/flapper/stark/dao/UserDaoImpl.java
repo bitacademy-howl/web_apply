@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.flapper.stark.model.UserVO;
 
 
-@Repository
+@Repository(value="userDao")
 public class UserDaoImpl implements UserDao{
 
 	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);

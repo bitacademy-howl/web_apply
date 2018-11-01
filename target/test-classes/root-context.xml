@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	 http://www.springframework.org/schema/tx    http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 여기는 xml 문서로 빈을 데이터정의 및 객체 생성을 목적으로 사용 -->
+	<!-- 디스패치 서블릿 configuring context의 역할을 넘기지 말 것!!! -->
+	
+	<!-- 아래와 같은 것들만 넣을 것!!! -->
+	<bean id="mySampleBean" class="com.flapper.stark.model.MusicVO">
+		<property name="lyrics" value="하잉"/>
+	</bean>
+	
+	<!-- Connection Pool DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/webdb?useSSL=false&amp;serverTimezone=UTC&amp;DB_CLOSE_DELAY=-1" />
+		<property name="username" value="root" />
+		<property name="password" value="stark1234!" />
+	</bean>
+</beans>
+	
+<!-- ####################################################################################################################################### -->
+		<!-- 
+	
+	JPA 예외를 스프링 예외로 변환
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/> -->
+
+	
+<!--     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="annotatedClasses" value="com.flapper.stark.model.MusicVO"/>
+	    <property name="packagesToScan" value="com.flapper.stark.model" />
+	    <property name="hibernateProperties">
+	    	<props>
+	    		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	    		<prop key="hibernate.show_sql">true</prop>
+	    		<prop key="hibernate.format_sql">true</prop>
+	    		<prop key="hibernate.use_sql_comments">true</prop>
+	    		<prop key="hibernate.id.new_generator_mappings">true</prop>
+	    		<prop key="hibernate.hbm2ddl.auto">create</prop>
+	    	</props>
+	    </property>
+	</bean> -->
+	<!-- 
+	<bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean> -->
+	
+	
+<!--     JPA 설정 ( 엔티티 매니저 팩토리 등록 )
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    	<property name="dataSource" ref="dataSource" />
+    	@Entity 탐색 범위
+    	<property name="packagesToScan" value="com.flapper.stark" />
+    	하이버네이트 구현체 사용
+    	<property name="jpaVendorAdapter">
+    		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+    	</property>
+    	하이버네이트 상세 설정
+    	<property name="jpaProperties">
+    		<props>
+	    		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	    		<prop key="hibernate.show_sql">true</prop>
+	    		<prop key="hibernate.format_sql">true</prop>
+	    		<prop key="hibernate.use_sql_comments">true</prop>
+	    		<prop key="hibernate.id.new_generator_mappings">true</prop>
+	    		<prop key="hibernate.hbm2ddl.auto">create</prop>
+    		</props>
+    	</property>
+    </bean> -->
+    
+   
+	
+	<!-- 트랜잭션 관리자 등록 -->
+	<!-- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean> -->
+	
+    <!-- 
+    <bean id="driverManager" class="java.sql.DriverManager">
+    </bean> -->
+    
+	<!-- <bean id="dataSource1" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driverClassName}" />
+	    <property name="url" value="${jdbc.url}" />
+	    <property name="username" value="${jdbc.username}" />
+	    <property name="password" value="${jdbc.password}" />
+	</bean> -->
+	<!-- 
+	<bean id="myDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driverClassName}" />
+	    <property name="url" value="${jdbc.url}" />
+	    <property name="username" value="${jdbc.id}" />
+	    <property name="password" value="${jdbc.pw}" />
+	</bean>
+	
+	하이버네이트 인스턴스 생성
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+	spring jpa 설정	<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.flapper.stark.model" />
+		대상이 될 모든 엔티티 위치 설정
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			실행된 쿼리 출력 여부
+			</props>
+		</property>
+	</bean>
+	
+		<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	어노테이션 트랜잭션 사용
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	</beans> -->
+	
+
+
+
+
+<!-- 
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<context:component-scan base-package="com.flapper.stark"/>
+	<context:property-placeholder location="/WEB-INF/hibernate.properties"/>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.id}"/>
+		<property name="password" value="${jdbc.pw}"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        
+        어노테이션 클래스들에 대한 클래스 명을 정의
+        주의 !!!! : value 속성으로 string을 넣는 것!
+        <property name="annotatedClasses" value="com.flapper.stark.model.MusicVO"/>
+        
+        기타 하이버네이트 속성들을 정의
+        <property name="hibernateProperties">
+            <props>
+            	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            	<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            	<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            	<prop key="pool_size">${hibernate.pool_size}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transectionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/> -->
