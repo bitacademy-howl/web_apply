@@ -50,19 +50,19 @@ public class MusicDaoImpl implements MusicDao{
 //		여기 작성중!!!!!!!!!!!!!!!!!!!!!
 //
 ////		session 
-//		CriteriaBuilder builder = sess.getCriteriaBuilder();
-//
-//		CriteriaQuery<MusicVO> criteria = builder.createQuery( MusicVO.class );
-//		Root<MusicVO> root = criteria.from( MusicVO.class );
-//		
+		CriteriaBuilder builder = sess.getCriteriaBuilder();
+
+		CriteriaQuery<MusicVO> criteria = builder.createQuery( MusicVO.class );
+		Root<MusicVO> root = criteria.from( MusicVO.class );
+		
 //		criteria.select( root );
-//		criteria.where( builder.equal( root.get( Person_.name ), "John Doe" ) );
-//
-//		List<Person> persons = entityManager.createQuery( criteria ).getResultList();
+		criteria.where( builder.equal( root.get("musicTitle"), "편지" ) );
+
+		resultList = sess.createQuery( criteria ).getResultList();
 ////		네이티브 쿼리는 테이블명, 컬럼명이 코드에 들어감
 //		List<Object[]> persons = sess.createNativeQuery("SELECT * FROM MusicVO").getResultList();
 //		
-//		logger.info("person List :: " + resultList);
+		logger.info("resultList :: " + resultList);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		sess.close();
 		return resultList;
